@@ -6,64 +6,152 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <form>
-      <fieldset class="beverage">
+  <form class="order-form">
+    <div class="beverages-list">
+      <fieldset class="beverage" data-index="1">
+        <button
+                type="button"
+                class="remove-button"
+                aria-label="Удалить напиток"
+        >
+          &times;
+        </button>
+
         <h4 class="beverage-count">Напиток №1</h4>
+
         <label class="field">
           <span class="label-text">Я буду</span>
-          <select>
-            <option value="espresso">Эспрессо</option>
-            <option value="capuccino" selected>Капучино</option>
-            <option value="cacao">Какао</option>
+          <select class="beverage-select" name="drink">
+            <option value="espresso" data-label="Эспрессо">Эспрессо</option>
+            <option value="capuccino" data-label="Капучино" selected>Капучино</option>
+            <option value="cacao" data-label="Какао">Какао</option>
           </select>
         </label>
+
         <div class="field">
           <span class="checkbox-label">Сделайте напиток на</span>
+
           <label class="checkbox-field">
-            <input type="radio" name="milk" value="usual" checked />
+            <input
+                    type="radio"
+                    name="milk-1"
+                    value="usual"
+                    data-label="обычное"
+                    checked
+            />
             <span>обычном молоке</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="radio" name="milk" value="no-fat" />
+            <input
+                    type="radio"
+                    name="milk-1"
+                    value="no-fat"
+                    data-label="обезжиренное"
+            />
             <span>обезжиренном молоке</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="radio" name="milk" value="soy" />
+            <input
+                    type="radio"
+                    name="milk-1"
+                    value="soy"
+                    data-label="соевое"
+            />
             <span>соевом молоке</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="radio" name="milk" value="coconut" />
+            <input
+                    type="radio"
+                    name="milk-1"
+                    value="coconut"
+                    data-label="кокосовое"
+            />
             <span>кокосовом молоке</span>
           </label>
         </div>
+
         <div class="field">
           <span class="checkbox-label">Добавьте к напитку:</span>
+
           <label class="checkbox-field">
-            <input type="checkbox" name="options" value="whipped cream" />
+            <input
+                    type="checkbox"
+                    name="options"
+                    value="whipped-cream"
+                    data-label="взбитые сливки"
+            />
             <span>взбитых сливок</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="checkbox" name="options" value="marshmallow" />
+            <input
+                    type="checkbox"
+                    name="options"
+                    value="marshmallow"
+                    data-label="зефирки"
+            />
             <span>зефирок</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="checkbox" name="options" value="chocolate" />
+            <input
+                    type="checkbox"
+                    name="options"
+                    value="chocolate"
+                    data-label="шоколад"
+            />
             <span>шоколад</span>
           </label>
+
           <label class="checkbox-field">
-            <input type="checkbox" name="options" value="cinnamon" />
+            <input
+                    type="checkbox"
+                    name="options"
+                    value="cinnamon"
+                    data-label="корица"
+            />
             <span>корицу</span>
           </label>
         </div>
       </fieldset>
-      <div>
-        <button type="button" class="add-button">+ Добавить напиток</button>
-      </div>
-      <div style="margin-top: 30px">
-        <button type="submit" class="submit-button">Готово</button>
-      </div>
-    </form>
+    </div>
 
-    <script src="index.js"></script>
+    <div>
+      <button type="button" class="add-button">+ Добавить напиток</button>
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="submit-button">Готово</button>
+    </div>
+  </form>
+
+  <div class="modal-overlay hidden"></div>
+
+  <section
+          class="modal hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+  >
+    <button type="button" class="modal-close" aria-label="Закрыть">&times;</button>
+    <h3 class="modal-title" id="modal-title">Заказ принят!</h3>
+    <p class="order-count-text"></p>
+
+    <table class="order-table">
+      <thead>
+      <tr>
+        <th>Напиток</th>
+        <th>Молоко</th>
+        <th>Дополнительно</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script src="index.js"></script>
   </body>
 </html>
