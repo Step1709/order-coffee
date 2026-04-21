@@ -87,3 +87,20 @@ beveragesList.addEventListener('click', (event) => {
 
 updateBeverageNumbers();
 updateDeleteButtonsState();
+
+function openModal() {
+    modal.classList.remove('hidden');
+    modalOverlay.classList.remove('hidden');
+}
+
+function closeModal() {
+    modal.classList.add('hidden');
+    modalOverlay.classList.add('hidden');
+}
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    openModal();
+});
+
+modalCloseButton.addEventListener('click', closeModal);
