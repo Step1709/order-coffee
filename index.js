@@ -85,6 +85,24 @@ beveragesList.addEventListener('click', (event) => {
     removeBeverage(removeButton);
 });
 
+function openModal() {
+    modal.classList.remove('hidden');
+    modalOverlay.classList.remove('hidden');
+}
+
+function closeModal() {
+    modal.classList.add('hidden');
+    modalOverlay.classList.add('hidden');
+}
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    renderOrderSummary();
+    openModal();
+});
+
+modalCloseButton.addEventListener('click', closeModal);
+
 
 function getDrinkWord(count) {
     const mod10 = count % 10;
@@ -150,20 +168,3 @@ function renderOrderSummary() {
 
 updateBeverageNumbers();
 updateDeleteButtonsState();
-
-function openModal() {
-    modal.classList.remove('hidden');
-    modalOverlay.classList.remove('hidden');
-}
-
-function closeModal() {
-    modal.classList.add('hidden');
-    modalOverlay.classList.add('hidden');
-}
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    openModal();
-});
-
-modalCloseButton.addEventListener('click', closeModal);
