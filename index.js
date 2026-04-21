@@ -85,6 +85,69 @@ beveragesList.addEventListener('click', (event) => {
     removeBeverage(removeButton);
 });
 
+
+function getDrinkWord(count) {
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+
+    if (mod10 === 1 && mod100 !== 11) {
+        return 'напиток';
+    }
+
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) {
+        return 'напитка';
+    }
+
+    return 'напитков';
+}
+
+function getCheckedOptionsText(beverage) {
+    const checkedOptions = beverage.querySelectorAll('input[type="checkbox"]:checked');
+
+    if (checkedOptions.length === 0) {
+        return '—';
+    }
+
+    return Array.from(checkedOptions)
+        .map((checkbox) => checkbox.dataset.label)
+        .join(', ');
+}
+
+function collectOrderData() {
+    return getBeverages().map((beverage) => {
+        const selectedDrink = beverage.querySelector('.beverage-select option:checked');
+        const selectedMilk = beverage.querySelector('input[type="radio"]:checked');
+
+        return {
+            drink: selectedDrink.dataset.label,
+            milk: selectedMilk.dataset.label,
+            options: getCheckedOptionsText(beverage),
+        };
+    });
+}
+
+function renderOrderTable(orderItems) {
+    orderTableBody.innerHTML = orderItems
+        .map((item) => {
+            return `
+        <tr>
+          <td>${item.drink}</td>
+          <td>${item.milk}</td>
+          <td>${item.options}</td>
+        </tr>
+      `;
+        })
+        .join('');
+}
+
+function renderOrderSummary() {
+    const orderItems = collectOrderData();
+    const count = orderItems.length;
+
+    orderCountText.textContent = `Вы заказали ${count} ${getDrinkWord(count)}`;
+    renderOrderTable(orderItems);
+}
+
 updateBeverageNumbers();
 updateDeleteButtonsState();
 
